@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "416301618615",
+    "firebase_url": "https://badradio-server-project.firebaseio.com",
+    "project_id": "badradio-server-project",
+    "storage_bucket": "badradio-server-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416301618615:android:11f25b4d867c9e8d",
+        "android_client_info": {
+          "package_name": "com.example.edmirsuljic.badradio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416301618615-b4siui81pe555ck4nibdtvt6q25jn00l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgubfvAmqRKaOPW6ISlUbKAg54-L6-udo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
