@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity
         Class fragmentClass = null;
 
         switch (id) {
+            case R.id.nav_home:
+                break;
             case R.id.nav_account:
                 break;
             case R.id.nav_favorite:
