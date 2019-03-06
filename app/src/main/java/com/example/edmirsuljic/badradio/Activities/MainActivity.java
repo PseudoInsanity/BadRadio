@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.edmirsuljic.badradio.Fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_home:
+                fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_account:
                 break;

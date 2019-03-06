@@ -19,11 +19,11 @@ public class RadioHandler {
 
     Context context;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("radioStations");
-    List<RadioStation> radioStationList = new ArrayList<>();
+    public List<RadioStation> radioStationList = new ArrayList<>();
 
 
 
-    public RadioStation getRadioStation() {
+    public List<RadioStation> getRadioStation() {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -40,6 +40,6 @@ public class RadioHandler {
             }
         });
 
-        return radioStationList.get(0);
+        return radioStationList;
     }
 }

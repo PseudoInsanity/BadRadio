@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.RadioRelated.RadioList;
@@ -41,7 +42,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.radioName.setText(mList.get(position).getName());
     }
 
     @Override
@@ -55,9 +56,14 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageButton btnPlay, btnPause;
+        private TextView radioName;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            btnPlay = itemView.findViewById(R.id.button);
+            radioName = itemView.findViewById(R.id.radioName);
+
             btnPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
