@@ -10,18 +10,19 @@ import android.widget.ImageButton;
 
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.RadioRelated.RadioList;
+import com.example.edmirsuljic.badradio.RadioRelated.RadioStation;
 
 import java.util.List;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
 
     private Context context;
-    private List<RadioList> mList;
+    private List<RadioStation> mList;
     private MyOnClickListener mMyOnClickListener;
     private int currentPlayingPosition = -1;
 
 
-    public RadioAdapter(Context context, List<RadioList> lists) {
+    public RadioAdapter(Context context, List<RadioStation> lists) {
         this.mList = lists;
         this.context = context;
     }
