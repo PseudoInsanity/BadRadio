@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new StartFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_start, fragment);
+        transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -110,6 +111,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_account:
                 break;
             case R.id.nav_favorite:
+
+                fragment = new PlayerFragment();
                 break;
             case R.id.nav_share:
                 break;
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_start, fragment);
+        transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
