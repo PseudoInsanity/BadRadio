@@ -18,8 +18,8 @@ public class RadioHandler {
 
 
     Context context;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("radioStations");
-    public List<RadioStation> radioStationList = new ArrayList<>();
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("radioStations");
+    private List<RadioStation> radioStationList = new ArrayList<>();
 
 
 

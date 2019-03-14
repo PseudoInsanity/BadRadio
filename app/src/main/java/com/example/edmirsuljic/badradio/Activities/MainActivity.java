@@ -1,6 +1,7 @@
 package com.example.edmirsuljic.badradio.Activities;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -53,10 +54,12 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Fragment fragment = new StartFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_start, fragment);
+        transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -92,9 +95,8 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull  MenuItem item) {
         // Handle navigation view item clicks here.
         selectDrawerItem(item);
         return true;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_home:
-                fragmentClass = HomeFragment.class;
+                fragment = new HomeFragment();
                 break;
             case R.id.nav_account:
                 break;
@@ -117,15 +119,11 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_start, fragment);
+        transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
