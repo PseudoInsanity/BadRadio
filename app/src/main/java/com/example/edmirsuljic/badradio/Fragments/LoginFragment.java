@@ -20,6 +20,7 @@ public class LoginFragment extends Fragment {
     }
 
     Button signinButton, registerButton;
+    //test
     EditText username, password;
 
     @Override
