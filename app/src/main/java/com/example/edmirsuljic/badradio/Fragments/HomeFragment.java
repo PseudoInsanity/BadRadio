@@ -21,17 +21,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View inflate = inflater.inflate(R.layout.fragment_start, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id. radio_list);
-//        recyclerView.setHasFixedSize(true);
+        RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id.radio_list);
+        recyclerView.setHasFixedSize(true);
 
-        if (inflate instanceof RecyclerView) {
-            Context context = inflate.getContext();
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            recyclerView.setAdapter(new RadioAdapter(context, radioHandler.getRadioStation()));
-        }
+        Context context = inflate.getContext().getApplicationContext();
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new RadioAdapter(context, radioHandler.getRadioStation()));
+
         return inflate;
     }
 

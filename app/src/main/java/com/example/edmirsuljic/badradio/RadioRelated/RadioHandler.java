@@ -2,9 +2,8 @@ package com.example.edmirsuljic.badradio.RadioRelated;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.widget.ListView;
+import android.util.Log;
 
-import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,8 +15,6 @@ import java.util.List;
 
 public class RadioHandler {
 
-
-    Context context;
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("radioStations");
     private List<RadioStation> radioStationList = new ArrayList<>();
 
@@ -30,13 +27,14 @@ public class RadioHandler {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot radioSnapshot : dataSnapshot.getChildren()) {
                     RadioStation radioStation = radioSnapshot.getValue(RadioStation.class);
+
                     radioStationList.add(radioStation);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e("ERROR", databaseError.getMessage());
             }
         });
 

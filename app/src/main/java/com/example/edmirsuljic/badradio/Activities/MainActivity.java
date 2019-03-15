@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_home:
-                fragment = new HomeFragment();
+                fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_account:
                 break;
@@ -119,7 +119,11 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -128,6 +132,6 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
 
 
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawers();
     }
 }
