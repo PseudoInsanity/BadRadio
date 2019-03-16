@@ -41,7 +41,9 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.radioTitle.setText(mList.get(position).getName());
+        RadioStation radioStation;
+        radioStation = mList.get(position);
+        holder.radioTitle.setText(radioStation.getName());
     }
 
     @Override
