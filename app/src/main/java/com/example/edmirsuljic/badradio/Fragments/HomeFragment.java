@@ -1,6 +1,5 @@
 package com.example.edmirsuljic.badradio.Fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,14 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.RadioRelated.RadioHandler;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
     RadioHandler radioHandler = new RadioHandler();
-
+    TextView radioStation;
+    ImageButton button;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -24,19 +26,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View inflate = inflater.inflate(R.layout.fragment_home, container, false);
 
         RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id.radio_list);
+        radioStation = (TextView) inflate.findViewById(R.id.radioStation);
+        button = (ImageButton) inflate.findViewById(R.id.button);
         recyclerView.setHasFixedSize(true);
 
+        //Context context = inflate.getContext().getApplicationContext();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(inflate.getContext().getApplicationContext());
 
-        Context context = inflate.getContext().getApplicationContext();
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new RadioAdapter(context, radioHandler.getRadioStation()));
+
+        recyclerView.setLayoutManager(layoutManager);
+        RadioAdapter radioAdapter = new RadioAdapter(inflate.getContext(), radioHandler.getRadioStation());
+        recyclerView.setAdapter(radioAdapter);
 
         return inflate;
     }
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

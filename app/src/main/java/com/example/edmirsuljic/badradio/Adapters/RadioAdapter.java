@@ -42,7 +42,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.radioName.setText(mList.get(position).getName());
+        holder.radioTitle.setText(mList.get(position).getName());
     }
 
     @Override
@@ -54,17 +54,18 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         mMyOnClickListener = myOnClickListener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private ImageButton btnPlay, btnPause;
-        private TextView radioName;
+        private TextView radioTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             btnPlay = itemView.findViewById(R.id.button);
-            radioName = itemView.findViewById(R.id.radioName);
+            radioTitle = itemView.findViewById(R.id.radioStation);
 
-            btnPlay.setOnClickListener(new View.OnClickListener() {
+
+          /*  btnPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -89,7 +90,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
                     currentPlayingPosition = -1;
                     mMyOnClickListener.pauseOnClick(v, position);
                 }
-            });
+            });*/
         }
     }
 

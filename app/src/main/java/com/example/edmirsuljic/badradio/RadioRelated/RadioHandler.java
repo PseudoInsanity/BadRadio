@@ -1,43 +1,37 @@
 package com.example.edmirsuljic.badradio.RadioRelated;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RadioHandler {
 
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("radioStations");
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<RadioStation> radioStationList = new ArrayList<>();
-
 
 
     public List<RadioStation> getRadioStation() {
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot radioSnapshot : dataSnapshot.getChildren()) {
-                    RadioStation radioStation = radioSnapshot.getValue(RadioStation.class);
-
-                    radioStationList.add(radioStation);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("ERROR", databaseError.getMessage());
-            }
-        });
-
+        db.collection("radioStations")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot q: queryDocumentSnapshots) {
+                            radioStationList.add(new RadioStation(q.getString("name"), q.getString("url")));
+                            System.out.println("Name: " + q.get("name"));
+                            Log.d("Edmir", "Success");
+                        }
+                    }
+                });
         return radioStationList;
     }
 }
