@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.edmirsuljic.badradio.Fragments.ShareFragment;
 import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new StartFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_start, fragment);
+        transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_favorite:
                 break;
             case R.id.nav_share:
+                fragmentClass = ShareFragment.class;
                 break;
         }
 
@@ -123,11 +125,11 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_start, fragment);
+        transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
 
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawers();
     }
 }
