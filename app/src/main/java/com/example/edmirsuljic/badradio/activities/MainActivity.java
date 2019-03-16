@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
+import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
+    RadioHandler radioHandler;
 
 
     @Override
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        radioHandler = new RadioHandler();
+        radioHandler.getRadioStation();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

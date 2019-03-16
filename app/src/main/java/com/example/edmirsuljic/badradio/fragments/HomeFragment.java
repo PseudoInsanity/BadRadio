@@ -26,12 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    RadioHandler radioHandler = new RadioHandler();
-    TextView radioStationTextView;
-    ImageButton button;
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private RadioStation radioStation = new RadioStation();
+    private RadioHandler radioHandler;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
 
 
     @Override
@@ -39,35 +38,21 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_home, container, false);
 
+        radioHandler = new RadioHandler();
+
+        for (RadioStation r: radioHandler.getRadioStationList()) {
+            System.out.println("namn: " + r.getName());
+        }
+
         System.out.println("Im in the home fragment");
-        RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id.radio_list);
-        radioStationTextView = (TextView) inflate.findViewById(R.id.radioStation);
-        button = (ImageButton) inflate.findViewById(R.id.button);
+        recyclerView = inflate.findViewById(R.id.radio_list);
         recyclerView.setHasFixedSize(true);
-
-        //Context context = inflate.getContext().getApplicationContext();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(inflate.getContext().getApplicationContext());
-
-
+        layoutManager = new LinearLayoutManager(inflate.getContext());
+        adapter = new RadioAdapter(radioHandler.getRadioStationList());
         recyclerView.setLayoutManager(layoutManager);
-        //här kommer listan in i adaptern
-        RadioAdapter radioAdapter = new RadioAdapter(inflate.getContext().getApplicationContext(), getRadioStationName());
-        System.out.println("Radio in Adapter: " + radioHandler.getRadioStation());
-        System.out.println("Radio in method: " + getRadioStationName());
-        recyclerView.setAdapter(radioAdapter);
+        recyclerView.setAdapter(adapter);
 
         return inflate;
-    }
-
-    //här hämtar jag listan från radiohandlern som i sin tur hämtar datan från fb. du ser i printoutsen att datan stämmer så får ut rätt men kan inte trycka in det i adaptern av någon anledning
-    private List<RadioStation> getRadioStationName() {
-        List<RadioStation> radioStations = new ArrayList<>();
-        RadioStation radioStation = new RadioStation();
-
-        radioStations = radioHandler.getRadioStation();
-
-        radioStations.add(radioStation);
-        return radioStations;
     }
 
 

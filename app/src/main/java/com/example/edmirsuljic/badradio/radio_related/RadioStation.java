@@ -14,7 +14,7 @@ public class RadioStation {
 
     }
 
-    public RadioStation(String url, String name) {
+    public RadioStation(String name, String url) {
         this.url = url;
         this.name = name;
     }

@@ -13,11 +13,11 @@ import java.util.List;
 public class RadioHandler {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private RadioStation radioStation = new RadioStation();
+    private static ArrayList<RadioStation> radioStationList;
 
+    public void getRadioStation() {
 
-    public List<RadioStation> getRadioStation() {
-        final List<RadioStation> radioStationList = new ArrayList<>();
+        radioStationList = new ArrayList<>();
         db.collection("radioStations")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -25,12 +25,17 @@ public class RadioHandler {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot q: queryDocumentSnapshots) {
                             radioStationList.add(new RadioStation(q.getString("name"), q.getString("url")));
-                            radioStation.setName(q.getString("name"));
-                            System.out.println("Name: " + q.get("name"));
                             Log.d("Edmir", "Success");
                         }
                     }
                 });
+
+        for (int i = 0; i < 8; i++) {
+            radioStationList.add(new RadioStation("Test" + i, "qqq"));
+        }
+    }
+
+    public ArrayList<RadioStation> getRadioStationList() {
         return radioStationList;
     }
 }
