@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
 
 
         recyclerView.setLayoutManager(layoutManager);
+        //här kommer listan in i adaptern
         RadioAdapter radioAdapter = new RadioAdapter(inflate.getContext().getApplicationContext(), getRadioStationName());
         System.out.println("Radio in Adapter: " + radioHandler.getRadioStation());
         System.out.println("Radio in method: " + getRadioStationName());
@@ -58,6 +59,7 @@ public class HomeFragment extends Fragment {
         return inflate;
     }
 
+    //här hämtar jag listan från radiohandlern som i sin tur hämtar datan från fb. du ser i printoutsen att datan stämmer så får ut rätt men kan inte trycka in det i adaptern av någon anledning
     private List<RadioStation> getRadioStationName() {
         List<RadioStation> radioStations = new ArrayList<>();
         RadioStation radioStation = new RadioStation();
@@ -68,21 +70,5 @@ public class HomeFragment extends Fragment {
         return radioStations;
     }
 
-    public List<RadioStation> getRadioStation() {
-        final List<RadioStation> radioStationList = new ArrayList<>();
-        db.collection("radioStations")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot q: queryDocumentSnapshots) {
-                            radioStationList.add(new RadioStation(q.getString("name"), q.getString("url")));
-                            radioStation.setName(q.getString("name"));
-                            System.out.println("Name: " + q.get("name"));
-                            Log.d("Edmir", "Success");
-                        }
-                    }
-                });
-        return radioStationList;
-    }
+
 }
