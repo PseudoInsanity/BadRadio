@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Activities;
+package com.example.edmirsuljic.badradio.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,8 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.edmirsuljic.badradio.Fragments.HomeFragment;
-import com.example.edmirsuljic.badradio.Fragments.StartFragment;
+import com.example.edmirsuljic.badradio.fragments.HomeFragment;
+import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 
 public class MainActivity extends AppCompatActivity

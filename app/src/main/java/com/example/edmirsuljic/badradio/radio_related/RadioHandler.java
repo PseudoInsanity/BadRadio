@@ -1,10 +1,8 @@
-package com.example.edmirsuljic.badradio.RadioRelated;
+package com.example.edmirsuljic.badradio.radio_related;
 
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;

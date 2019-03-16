@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.RadioRelated.RadioHandler;
+import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
 
 public class HomeFragment extends Fragment {
     RadioHandler radioHandler = new RadioHandler();
@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id.radio_list);
         radioStation = (TextView) inflate.findViewById(R.id.radioStation);
-        button = (ImageButton) inflate.findViewById(R.id.button);
+        //button = (ImageButton) inflate.findViewById(R.id.button);
         recyclerView.setHasFixedSize(true);
 
         //Context context = inflate.getContext().getApplicationContext();

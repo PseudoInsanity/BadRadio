@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Adapters;
+package com.example.edmirsuljic.badradio.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,8 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.RadioRelated.RadioList;
-import com.example.edmirsuljic.badradio.RadioRelated.RadioStation;
+import com.example.edmirsuljic.badradio.radio_related.RadioStation;
 
 import java.util.List;
 
@@ -61,7 +60,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            btnPlay = itemView.findViewById(R.id.button);
             radioTitle = itemView.findViewById(R.id.radioStation);
 
 

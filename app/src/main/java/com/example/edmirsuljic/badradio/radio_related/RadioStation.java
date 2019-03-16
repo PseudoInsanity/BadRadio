@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.RadioRelated;
+package com.example.edmirsuljic.badradio.radio_related;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

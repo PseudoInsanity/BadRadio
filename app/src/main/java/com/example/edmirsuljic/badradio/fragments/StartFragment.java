@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
