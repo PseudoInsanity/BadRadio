@@ -47,10 +47,6 @@
               "client_type": 3
             }
           ]
-
-          "status": 1,
-          "other_platform_oauth_client": []
-
         },
         "ads_service": {
           "status": 2

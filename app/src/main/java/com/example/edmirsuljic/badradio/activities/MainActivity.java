@@ -28,7 +28,7 @@ import android.widget.RemoteViews;
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
-import com.example.edmirsuljic.badradio.Fragments.StartFragment;
+import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
 import com.example.edmirsuljic.badradio.Services.MusicService;
@@ -122,14 +122,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPause () {
+    public void onPause() {
         showNotification();
 
         super.onPause();
     }
 
     @Override
-    public void onDestroy () {
+    public void onDestroy() {
         notificationManager.cancel(1);
         super.onDestroy();
     }
@@ -157,8 +157,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_account:
                 break;
             case R.id.nav_favorite:
-
-                fragment = new PlayerFragment();
+                fragmentClass = PlayerFragment.class;
                 break;
             case R.id.nav_share:
                 break;
@@ -180,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawers();
     }
 
-    public void showNotification () {
+    public void showNotification() {
 
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification_layout);
 
