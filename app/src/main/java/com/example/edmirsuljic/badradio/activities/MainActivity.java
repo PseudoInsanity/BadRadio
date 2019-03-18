@@ -1,12 +1,19 @@
 package com.example.edmirsuljic.badradio.activities;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,11 +23,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RemoteViews;
 
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.StartFragment;
+import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
+import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
+import com.example.edmirsuljic.badradio.Services.MusicService;
+import com.example.edmirsuljic.badradio.Services.NotifyBroadcast;
+
+import static com.example.edmirsuljic.badradio.Services.NotifyChannel.MUSIC_CHANNEL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,25 +43,21 @@ public class MainActivity extends AppCompatActivity
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     RadioHandler radioHandler;
+    Context context = this;
+    public static NotificationManagerCompat notificationManager;
+    public static Notification notification;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        notificationManager = NotificationManagerCompat.from(context);
         radioHandler = new RadioHandler();
         radioHandler.getRadioStation();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -58,14 +68,18 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         Fragment fragment = new StartFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_holder, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
+        Fragment player = new PlayerFragment();
+        FragmentManager playerManager = getSupportFragmentManager();
+        FragmentTransaction playerTransaction = playerManager.beginTransaction();
+        playerTransaction.replace(R.id.player_holder, player);
+        playerTransaction.commit();
     }
 
     @Override
@@ -107,6 +121,30 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onPause () {
+        showNotification();
+
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy () {
+        notificationManager.cancel(1);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStart() {
+        Fragment player = new PlayerFragment();
+        FragmentManager playerManager = getSupportFragmentManager();
+        FragmentTransaction playerTransaction = playerManager.beginTransaction();
+        playerTransaction.replace(R.id.player_holder, player);
+        playerTransaction.commit();
+        notificationManager.cancel(1);
+        super.onStart();
+    }
+
     private void selectDrawerItem(MenuItem item) {
         int id = item.getItemId();
         Fragment fragment = null;
@@ -119,6 +157,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_account:
                 break;
             case R.id.nav_favorite:
+
+                fragment = new PlayerFragment();
                 break;
             case R.id.nav_share:
                 break;
@@ -138,5 +178,32 @@ public class MainActivity extends AppCompatActivity
 
 
         drawer.closeDrawers();
+    }
+
+    public void showNotification () {
+
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification_layout);
+
+        Intent clickedIntent = new Intent(context, NotifyBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                clickedIntent, 0);
+
+        remoteViews.setOnClickPendingIntent(R.id.imageView3, pendingIntent);
+
+        if (PlayerFragment.playing) {
+
+            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_two);
+
+        } else if (!PlayerFragment.playing) {
+
+            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim);
+        }
+
+        notification = new NotificationCompat.Builder(context, MUSIC_CHANNEL)
+                .setSmallIcon(R.drawable.logo)
+                .setCustomContentView(remoteViews)
+                .build();
+
+        notificationManager.notify(1, notification);
     }
 }
