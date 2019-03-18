@@ -7,6 +7,8 @@
     <string name="nav_header_subtitle">user.email@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="ani_play_to_pause">M 12 2 C 6.48 2 2 6.48 2 12 C 2 17.52 6.48 22 12 22 C 17.52 22 22 17.52 22 12 C 22 6.48 17.52 2 12 2 Z M 10 16.5 L 10 12 L 10 7.5 L 16 12 L 10 16.5 L 10 16.5 M 14 12 L 14 12 L 14 12 L 14 12 L 14 12 L 14 12</string>
+    <string name="ani_pause_to_play">M 12 2 C 6.48 2 2 6.48 2 12 C 2 17.52 6.48 22 12 22 C 17.52 22 22 17.52 22 12 C 22 6.48 17.52 2 12 2 Z M 11 16 L 9 16 L 9 8 L 11 8 L 11 16 Z M 15 16 L 13 16 L 13 8 L 15 8 L 15 16 Z"</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

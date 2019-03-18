@@ -18,7 +18,7 @@ public class NotifyBroadcast extends BroadcastReceiver {
 
                     PlayerFragment.playing = false;
 
-                    MainActivity.notification.contentView.setImageViewResource(R.id.imageView3, R.drawable.avd_anim);
+                    MainActivity.notification.contentView.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_play);
                     MainActivity.notificationManager.notify(1, MainActivity.notification);
 
                     //Called for music service to start
@@ -28,7 +28,7 @@ public class NotifyBroadcast extends BroadcastReceiver {
                 } else if (!PlayerFragment.playing) {
 
                     PlayerFragment.playing = true;
-                    MainActivity.notification.contentView.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_two);
+                    MainActivity.notification.contentView.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_pause);
                     MainActivity.notificationManager.notify(1, MainActivity.notification);
 
                     //Called for music service to start

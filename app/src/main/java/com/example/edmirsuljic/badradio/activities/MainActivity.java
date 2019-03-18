@@ -185,11 +185,11 @@ public class MainActivity extends AppCompatActivity
 
         if (PlayerFragment.playing) {
 
-            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_two);
+            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_pause);
 
         } else if (!PlayerFragment.playing) {
 
-            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim);
+            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_play);
         }
 
         notification = new NotificationCompat.Builder(context, MUSIC_CHANNEL)

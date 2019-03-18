@@ -39,7 +39,7 @@
         android:layout_height="90dp"
         android:layout_weight="1"
         android:tint="@color/colorPrimary"
-        android:src="@drawable/avd_anim"
-        tools:srcCompat="@drawable/avd_anim" />
+        android:src="@drawable/avd_anim_play"
+        tools:srcCompat="@drawable/avd_anim_play" />
 
 </LinearLayout>

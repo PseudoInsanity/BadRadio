@@ -10,8 +10,9 @@ import java.io.IOException;
 
 public class MusicService extends Service {
 
-
+    //TODO Fix so that the media player url changes accordingly to Firebase-RadioStaion getUrl()
     private MediaPlayer mediaPlayer;
+    public static String url;
 
     public MusicService() {}
 
@@ -23,9 +24,10 @@ public class MusicService extends Service {
 
             mediaPlayer = new MediaPlayer();
 
+
             //sets sound src file
             try {
-                mediaPlayer.setDataSource("http://fm01-ice.stream.khz.se/fm01_mp3");
+                mediaPlayer.setDataSource(url);
             } catch (Exception e) {
                 e.printStackTrace();
             }

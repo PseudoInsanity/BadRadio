@@ -29,12 +29,13 @@ public class PlayerFragment extends Fragment{
     public static boolean playing = false;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        view = inflater.inflate(R. layout.fragment_player, container, false);
+        view = inflater.inflate(R.layout.fragment_player, container, false);
 
         videoView = view.findViewById(R.id.videoView);
         imageButton = view.findViewById(R.id.imageButton);
@@ -46,19 +47,68 @@ public class PlayerFragment extends Fragment{
         //Init state of playbutton
         if (playing) {
 
-            imageButton.setImageResource(R.drawable.avd_anim_two);
+            imageButton.setImageResource(R.drawable.ic_pause24dp);
 
 
         } else if (!playing) {
 
-            imageButton.setImageResource(R.drawable.avd_anim);
+            imageButton.setImageResource(R.drawable.ic_play24dp);
 
         }
 
-        playButtonAnimation();
+        //playButtonAnimation();
+        handlePlayButton();
         playBackground();
 
         return view;
+    }
+
+
+    private void handlePlayButton() {
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (playing) {
+
+                    imageButton.setImageResource(R.drawable.ic_pause24dp);
+                    playing = false;
+
+                    //Called for music service to stop
+                    Intent i = new Intent(view.getContext(), MusicService.class);
+                    getActivity().stopService(i);
+
+
+
+
+                } else if (!playing) {
+
+                    imageButton.setImageResource(R.drawable.ic_play24dp);
+                    playing = true;
+
+                    //Called for music service to start
+                    Intent i = new Intent(view.getContext(), MusicService.class);
+                    getActivity().startService(i);
+
+
+                }
+
+                Drawable drawable = imageButton.getDrawable();
+                if (drawable instanceof AnimatedVectorDrawableCompat) {
+
+                    AnimatedVectorDrawableCompat compat = (AnimatedVectorDrawableCompat) drawable;
+                    compat.start();
+
+
+                } else if (drawable instanceof AnimatedVectorDrawable) {
+
+                    AnimatedVectorDrawable vectorDrawable = (AnimatedVectorDrawable) drawable;
+                    vectorDrawable.start();
+
+                }
+            }
+        });
+
     }
 
     //Handling the play/pause button
@@ -71,7 +121,7 @@ public class PlayerFragment extends Fragment{
 
                 if (playing) {
 
-                    imageButton.setImageResource(R.drawable.avd_anim_two);
+                    imageButton.setImageResource(R.drawable.avd_anim_play_to_pause);
                     playing = false;
 
                     //Called for music service to stop
@@ -83,7 +133,7 @@ public class PlayerFragment extends Fragment{
 
                 } else if (!playing) {
 
-                    imageButton.setImageResource(R.drawable.avd_anim);
+                    imageButton.setImageResource(R.drawable.avd_anim_pause_to_play);
                     playing = true;
 
                     //Called for music service to start

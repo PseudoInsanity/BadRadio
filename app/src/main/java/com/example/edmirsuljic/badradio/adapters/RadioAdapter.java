@@ -1,21 +1,18 @@
 package com.example.edmirsuljic.badradio.adapters;
 
-import android.media.MediaPlayer;
-import android.os.Handler;
-import android.os.Message;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.radio_related.RadioStation;
+import com.example.edmirsuljic.badradio.services.MusicService;
 
 import java.util.ArrayList;
 
@@ -26,6 +23,8 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     private ViewHolder viewHolder;
     private int lastPos;
     private boolean isClicked = false;
+    MusicService musicService = new MusicService();
+
 
     public RadioAdapter(ArrayList<RadioStation> mList) {
         this.mList = mList;
@@ -43,6 +42,8 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.radioTitle.setText(mList.get(position).getName());
+        musicService.url = mList.get(position).getUrl();
+        //holder.url = (mList.get(position).getUrl());
 
 
         if (position == lastPos) {
@@ -54,7 +55,8 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         holder.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changePlayButton(position);
+                handlePlayButton(v, position);
+
             }
         });
 
@@ -66,11 +68,11 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     }
 
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView radioTitle;
         private ImageView playButton;
+        private String url;
 
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
@@ -78,7 +80,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
             radioTitle = itemView.findViewById(R.id.radioStation);
             playButton = itemView.findViewById(R.id.button);
-
 
 
         }
@@ -89,19 +90,24 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         void onPlayClicked(int position);
     }
 
-    private void changePlayButton(int position) {
+    private void handlePlayButton(View view, int position) {
+        Context context = view.getContext();
         if (lastPos == position) {
 
             int prevPos = lastPos;
             lastPos = -1;
             notifyItemChanged(prevPos);
             notifyItemChanged(lastPos);
+            Intent i = new Intent(view.getContext(), MusicService.class);
+            context.stopService(i);
         } else {
 
             int prevPos = lastPos;
             lastPos = position;
             notifyItemChanged(prevPos);
             notifyItemChanged(lastPos);
+            Intent i = new Intent(view.getContext(), MusicService.class);
+            context.startService(i);
         }
     }
 

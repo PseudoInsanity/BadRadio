@@ -30,9 +30,6 @@ public class RadioHandler {
                     }
                 });
 
-        for (int i = 0; i < 8; i++) {
-            radioStationList.add(new RadioStation("Test" + i, "qqq"));
-        }
     }
 
     public ArrayList<RadioStation> getRadioStationList() {
