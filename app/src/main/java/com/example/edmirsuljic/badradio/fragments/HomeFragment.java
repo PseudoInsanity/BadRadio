@@ -2,6 +2,7 @@ package com.example.edmirsuljic.badradio.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class HomeFragment extends Fragment {
     private RadioHandler radioHandler;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
+    private RadioAdapter adapter;
 
 
     @Override
@@ -40,20 +41,35 @@ public class HomeFragment extends Fragment {
 
         radioHandler = new RadioHandler();
 
-        for (RadioStation r: radioHandler.getRadioStationList()) {
+        for (RadioStation r : radioHandler.getRadioStationList()) {
             System.out.println("namn: " + r.getName());
         }
 
-        System.out.println("Im in the home fragment");
-        recyclerView = inflate.findViewById(R.id.radio_list);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(inflate.getContext());
-        adapter = new RadioAdapter(radioHandler.getRadioStationList());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        buildRecyclerView(inflate);
 
         return inflate;
     }
 
+    private void buildRecyclerView(final View view) {
+        System.out.println("Im in the home fragment");
+
+        recyclerView = view.findViewById(R.id.radio_list);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(view.getContext());
+        adapter = new RadioAdapter(radioHandler.getRadioStationList());
+
+        adapter.setOnItemClickListener(new RadioAdapter.OnItemClickListener() {
+            @Override
+            public void onPlayClicked(int position) {
+
+                Snackbar.make(view, "Clicked", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
 
 }

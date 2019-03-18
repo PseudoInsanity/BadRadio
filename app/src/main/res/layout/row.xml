@@ -2,18 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/greyColor">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp">
+        android:layout_margin="12dp"
+        android:background="@color/greyColor"
+        app:cardBackgroundColor="@color/greyColor">
 
         <TextView
-            android:id="@+id/stationName"
+            android:id="@+id/radioStation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/greyColor"
+            android:textColor="@color/colorAccent"
             android:textSize="32sp" />
+
+        <ImageView
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_play24dp"
+            android:onClick="onClick"
+            android:layout_gravity="end"/>
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
