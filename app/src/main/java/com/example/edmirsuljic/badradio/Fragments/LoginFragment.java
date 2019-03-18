@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.Executor;
+
 import static android.content.ContentValues.TAG;
 
 
@@ -34,7 +36,7 @@ public class LoginFragment extends Fragment {
     Button signinButton, registerButton;
     //test
     EditText username, password;
-    RegisterFragment update = new RegisterFragment();
+    //RegisterFragment update = new RegisterFragment();
 
 
     @Override
@@ -85,7 +87,7 @@ public class LoginFragment extends Fragment {
 
     public void loginUser () {
         mAuth.signInWithEmailAndPassword(username.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(LoginFragment.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Executor) LoginFragment.this, new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -103,6 +105,10 @@ public class LoginFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    private void updateUI(FirebaseUser user) {
+
     }
 
 

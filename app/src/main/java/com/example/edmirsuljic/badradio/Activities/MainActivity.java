@@ -1,5 +1,6 @@
 package com.example.edmirsuljic.badradio.Activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.Fragments.LoginFragment;
 import com.example.edmirsuljic.badradio.R;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -21,6 +21,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.Executor;
+
 import static android.content.ContentValues.TAG;
 
 public class RegisterFragment extends Fragment {
@@ -62,7 +64,7 @@ public class RegisterFragment extends Fragment {
                     Fragment fragment = null;
                     Class fragmentClass = null;
 
-                    fragmentClass = LoginFragment.class;
+                    fragmentClass = com.example.edmirsuljic.badradio.Fragments.LoginFragment.class;
 
                     try {
                         fragment = (Fragment) fragmentClass.newInstance();
@@ -88,9 +90,9 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment fragment = null;
-                Class fragmentClass = null;
+                Class fragmentClass = com.example.edmirsuljic.badradio.Fragments.LoginFragment.class;
 
-                fragmentClass = LoginFragment.class;
+
 
                 try {
                     fragment = (Fragment) fragmentClass.newInstance();
@@ -112,7 +114,7 @@ public class RegisterFragment extends Fragment {
     public void createAccount (){
 
         mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(RegisterFragment.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Executor) RegisterFragment.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
