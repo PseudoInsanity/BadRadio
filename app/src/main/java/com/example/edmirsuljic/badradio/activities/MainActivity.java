@@ -23,7 +23,7 @@ import android.widget.RemoteViews;
 
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.StartFragment;
-import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
+import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
 import com.example.edmirsuljic.badradio.services.NotifyBroadcast;

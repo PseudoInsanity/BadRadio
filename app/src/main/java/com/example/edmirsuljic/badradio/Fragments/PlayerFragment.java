@@ -1,35 +1,21 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RemoteViews;
 import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.BuildConfig;
-import com.example.edmirsuljic.badradio.Services.MusicService;
+import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.Services.NotifyBroadcast;
-
-import static com.example.edmirsuljic.badradio.Services.NotifyChannel.MUSIC_CHANNEL;
 
 
 public class PlayerFragment extends Fragment{
