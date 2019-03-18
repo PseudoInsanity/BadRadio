@@ -5,16 +5,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,13 +24,11 @@ import android.widget.RemoteViews;
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
-import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
-import com.example.edmirsuljic.badradio.Services.MusicService;
-import com.example.edmirsuljic.badradio.Services.NotifyBroadcast;
+import com.example.edmirsuljic.badradio.services.NotifyBroadcast;
 
-import static com.example.edmirsuljic.badradio.Services.NotifyChannel.MUSIC_CHANNEL;
+import static com.example.edmirsuljic.badradio.services.NotifyChannel.MUSIC_CHANNEL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

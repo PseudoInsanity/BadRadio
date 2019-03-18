@@ -1,9 +1,8 @@
-package com.example.edmirsuljic.badradio.Services;
+package com.example.edmirsuljic.badradio.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.RemoteViews;
 
 import com.example.edmirsuljic.badradio.activities.MainActivity;
 import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
