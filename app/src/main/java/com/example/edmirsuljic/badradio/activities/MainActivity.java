@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.RemoteViews;
 
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
+import com.example.edmirsuljic.badradio.fragments.ShareFragment;
 import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
