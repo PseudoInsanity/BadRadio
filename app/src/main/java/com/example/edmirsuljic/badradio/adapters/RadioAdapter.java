@@ -44,7 +44,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         holder.radioTitle.setText(mList.get(position).getName());
         MusicService.setUrl(mList.get(position).getUrl());
         //System.out.println(mList.get(position).getUrl());
-        //holder.staticUrl = (mList.get(position).getUrl());
 
 
         if (position == lastPos) {
@@ -80,8 +79,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
             radioTitle = itemView.findViewById(R.id.radioStation);
             playButton = itemView.findViewById(R.id.button);
-
-
         }
     }
 
@@ -100,17 +97,17 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
             lastPos = -1;
             notifyItemChanged(prevPos);
             notifyItemChanged(lastPos);
+
         } else {
 
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            if (!musicService.isPlaying(mediaPlayer)) {
-                Intent i = new Intent(context, MusicService.class);
-                context.startService(i);
-                int prevPos = lastPos;
-                lastPos = position;
-                notifyItemChanged(prevPos);
-                notifyItemChanged(lastPos);
-            }
+            Intent i = new Intent(context, MusicService.class);
+            context.stopService(i);
+            context.startService(i);
+            int prevPos = lastPos;
+            lastPos = position;
+            notifyItemChanged(prevPos);
+            notifyItemChanged(lastPos);
+
         }
     }
 

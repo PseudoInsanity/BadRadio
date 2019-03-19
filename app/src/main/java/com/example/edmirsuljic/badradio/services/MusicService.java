@@ -11,11 +11,13 @@ import java.io.IOException;
 public class MusicService extends Service {
 
     //TODO Fix so that the media player staticUrl changes accordingly to Firebase-RadioStaion getUrl()
-    private MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     public static String staticUrl;
+    public static boolean isPlaying;
 
 
-    public MusicService() {}
+    public MusicService() {
+    }
 
     //This is the method that is called when getActivity().startService(i); is called
     @Override
@@ -34,21 +36,16 @@ public class MusicService extends Service {
                 e.printStackTrace();
             }
 
-            try {
+            //prepares the player for playback
+            mediaPlayer.prepare();
 
-
-                //prepares the player for playback
-                mediaPlayer.prepare();
-            } catch (IllegalStateException ix) {
-                ix.printStackTrace();
-                Log.d("Edmir", "Error" + ix.getMessage());
-            }
             //starts the playback
             mediaPlayer.start();
+           // isPlaying = true;
 
         } catch (IOException e) {
             e.printStackTrace();
-            Log.i("show","Error: "+ e.toString());
+            Log.i("show", "Error: " + e.toString());
         }
 
         return START_NOT_STICKY;
@@ -56,12 +53,13 @@ public class MusicService extends Service {
 
     //This is the method that is called when getActivity().startStop(i); is called
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
 
         //stops the playback
         mediaPlayer.stop();
         //releases any resource attached with the MediaPlayer
         mediaPlayer.release();
+       // isPlaying = false;
 
     }
 
@@ -74,7 +72,7 @@ public class MusicService extends Service {
         MusicService.staticUrl = url;
     }
 
-    public boolean isPlaying(MediaPlayer mediaPlayer) {
+    public static boolean isPlaying() {
         return mediaPlayer.isPlaying();
     }
 }
