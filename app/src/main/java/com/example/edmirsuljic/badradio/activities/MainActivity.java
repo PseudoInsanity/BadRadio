@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentClass = PlayerFragment.class;
                 break;
             case R.id.nav_share:
+                fragmentClass = ShareFragment.class;
                 break;
         }
 
