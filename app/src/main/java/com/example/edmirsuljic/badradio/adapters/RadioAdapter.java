@@ -2,6 +2,7 @@ package com.example.edmirsuljic.badradio.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,8 +23,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     private OnItemClickListener mListener;
     private ViewHolder viewHolder;
     private int lastPos;
-    private boolean isClicked = false;
-    MusicService musicService = new MusicService();
+    private MusicService musicService = new MusicService();
 
 
     public RadioAdapter(ArrayList<RadioStation> mList) {
@@ -42,8 +42,9 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.radioTitle.setText(mList.get(position).getName());
-        musicService.url = mList.get(position).getUrl();
-        //holder.url = (mList.get(position).getUrl());
+        MusicService.setUrl(mList.get(position).getUrl());
+        //System.out.println(mList.get(position).getUrl());
+        //holder.staticUrl = (mList.get(position).getUrl());
 
 
         if (position == lastPos) {
@@ -72,7 +73,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
         private TextView radioTitle;
         private ImageView playButton;
-        private String url;
 
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
@@ -94,20 +94,23 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         Context context = view.getContext();
         if (lastPos == position) {
 
+            Intent i = new Intent(context, MusicService.class);
+            context.stopService(i);
             int prevPos = lastPos;
             lastPos = -1;
             notifyItemChanged(prevPos);
             notifyItemChanged(lastPos);
-            Intent i = new Intent(view.getContext(), MusicService.class);
-            context.stopService(i);
         } else {
 
-            int prevPos = lastPos;
-            lastPos = position;
-            notifyItemChanged(prevPos);
-            notifyItemChanged(lastPos);
-            Intent i = new Intent(view.getContext(), MusicService.class);
-            context.startService(i);
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            if (!musicService.isPlaying(mediaPlayer)) {
+                Intent i = new Intent(context, MusicService.class);
+                context.startService(i);
+                int prevPos = lastPos;
+                lastPos = position;
+                notifyItemChanged(prevPos);
+                notifyItemChanged(lastPos);
+            }
         }
     }
 

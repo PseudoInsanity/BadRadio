@@ -10,9 +10,10 @@ import java.io.IOException;
 
 public class MusicService extends Service {
 
-    //TODO Fix so that the media player url changes accordingly to Firebase-RadioStaion getUrl()
+    //TODO Fix so that the media player staticUrl changes accordingly to Firebase-RadioStaion getUrl()
     private MediaPlayer mediaPlayer;
-    public static String url;
+    public static String staticUrl;
+
 
     public MusicService() {}
 
@@ -27,14 +28,21 @@ public class MusicService extends Service {
 
             //sets sound src file
             try {
+                String url = staticUrl;
                 mediaPlayer.setDataSource(url);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            //prepares the player for playback
-            mediaPlayer.prepare();
+            try {
 
+
+                //prepares the player for playback
+                mediaPlayer.prepare();
+            } catch (IllegalStateException ix) {
+                ix.printStackTrace();
+                Log.d("Edmir", "Error" + ix.getMessage());
+            }
             //starts the playback
             mediaPlayer.start();
 
@@ -43,7 +51,7 @@ public class MusicService extends Service {
             Log.i("show","Error: "+ e.toString());
         }
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     //This is the method that is called when getActivity().startStop(i); is called
@@ -62,4 +70,11 @@ public class MusicService extends Service {
         return null;
     }
 
+    public static void setUrl(String url) {
+        MusicService.staticUrl = url;
+    }
+
+    public boolean isPlaying(MediaPlayer mediaPlayer) {
+        return mediaPlayer.isPlaying();
+    }
 }
