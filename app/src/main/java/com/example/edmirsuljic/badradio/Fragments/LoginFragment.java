@@ -34,9 +34,8 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
 
     Button signinButton, registerButton;
-    //test
     EditText username, password;
-    //RegisterFragment update = new RegisterFragment();
+    RegisterFragment update = new RegisterFragment();
 
 
     @Override
@@ -63,6 +62,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //on-click will take user to the register window
+                System.out.println("hej");
                 Fragment fragment = null;
                 Class fragmentClass = null;
 
@@ -95,13 +95,13 @@ public class LoginFragment extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            update.updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getContext(), "Authentication failed.",
                                     Toast.LENGTH_LONG).show();
-                            updateUI(null);
+                            update.updateUI(null);
                         }
                     }
                 });

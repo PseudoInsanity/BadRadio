@@ -54,11 +54,11 @@ public class RegisterFragment extends Fragment {
             public void onClick(View view) {
                 //check if the email, username and password is valid if it is it saves it to database and take user back
                 //to login screen else error output and user have to re-enter information
-                if (isEmailValid(email.getText().toString()) == true && isUserValid(username.toString()) == true
+                if (isEmailValid(email.getText().toString()) == true
                         && isPasswordValid(password.toString()) == true) {
                     //first check passed and information can get added to database and send user to login window UNLESS email or username
                     // already exists in that case print out error message
-
+                    System.out.println("worlddd111");
                     createAccount();
 
                     Fragment fragment = null;
@@ -78,9 +78,9 @@ public class RegisterFragment extends Fragment {
                     transaction.addToBackStack(null);
                     transaction.commit();
 
-                } else if (isEmailValid(email.getText().toString()) == false || isUserValid(username.getText().toString()) == false
+                } else if (isEmailValid(email.getText().toString()) == false
                 || isPasswordValid(password.getText().toString()) == false){
-                    Toast.makeText(getContext(),"Invalid email, username or password",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Invalid email or password",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -112,8 +112,9 @@ public class RegisterFragment extends Fragment {
     }
 
     public void createAccount (){
-
-        mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString())
+        System.out.println("worlddd");
+        email.setText("testtttttttttttt");
+        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener((Executor) RegisterFragment.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
