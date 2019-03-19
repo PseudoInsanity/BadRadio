@@ -7,32 +7,28 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.edmirsuljic.badradio.R;
 
 public class ShareFragment extends Fragment implements View.OnClickListener{
-    private ImageButton twitter, facebook, instagram;
+    private Button share;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View inflate = inflater.inflate(R.layout.fragment_share, container, false);
-        twitter = inflate.findViewById(R.id.imageViewTwitter);
-        facebook = inflate.findViewById(R.id.imageViewFacebook);
-        instagram = inflate.findViewById(R.id.imageViewInstagram);
+        share = inflate.findViewById(R.id.imageViewShare);
 
-        twitter.setOnClickListener(this);
-        facebook.setOnClickListener(this);
-        instagram.setOnClickListener(this);
-
+        share.setOnClickListener(this);
 
         return inflate;
     }
 
 
-    public void openTwitter(View view) {
+    /*public void openTwitter(View view) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
 
@@ -47,26 +43,23 @@ public class ShareFragment extends Fragment implements View.OnClickListener{
     public void openInstagram(View view) {
         Intent instagramIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/accounts/login/"));
         startActivity(instagramIntent);
-    }
+    }*/
 
-    public void openFacebook(View view) {
-        Intent facebookIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com"));
-        startActivity(facebookIntent);
+    public void openAppToShare(View view) {
+        String message = "I'm listening to (station)! You can too: (url)";
+
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(shareIntent.ACTION_SEND);
+        shareIntent.putExtra(shareIntent.EXTRA_TEXT,message);
+        shareIntent.setType("text/plain");
+
+        startActivity(shareIntent.createChooser(shareIntent,"Share your favorite station to : " ));
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.imageViewTwitter:
-                openTwitter(v);
-                break;
-            case R.id.imageViewFacebook:
-                openFacebook(v);
-                break;
-            case R.id.imageViewInstagram:
-                openInstagram(v);
-                break;
-        }
+        openAppToShare(v);
     }
 }
