@@ -33,6 +33,13 @@ public class ShareFragment extends Fragment implements View.OnClickListener{
 
 
     public void openTwitter(View view) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+
+        intent.setType("text/hello");
+        intent.putExtra(Intent.EXTRA_TEXT, "https://www.google.com");
+        startActivity(Intent.createChooser(intent, "Share"));
+
         Intent twitterIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/login"));
         startActivity(twitterIntent);
 
