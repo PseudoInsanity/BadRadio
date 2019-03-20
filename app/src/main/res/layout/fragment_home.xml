@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.HomeFragment"
-    android:background="@color/greyColor">
+    android:background="@color/greyColor"
+    android:id="@+id/fragment_home">
 
 
     <android.support.v7.widget.RecyclerView

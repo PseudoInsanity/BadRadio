@@ -27,6 +27,7 @@ import com.example.edmirsuljic.badradio.fragments.AccountFragment;
 import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
+import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.services.NotifyBroadcast;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     private Context context = this;
     public static NotificationManagerCompat notificationManager;
     public static Notification notification;
+    private Fragment fragment;
 
 
     @Override
@@ -72,7 +74,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragment = new HomeFragment();
+
+        fragment = new HomeFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_holder, fragment);
@@ -86,6 +89,12 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+
+
+
+        if (fragment instanceof HomeFragment) {
+            exitProgram();
         }
 
     }
@@ -106,11 +115,11 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            notificationManager.cancelAll();
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(context, StartActivity.class);
-            startActivity(intent);
-            return true;
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -135,6 +144,8 @@ public class MainActivity extends AppCompatActivity
         FirebaseAuth.getInstance().signOut();
         notificationManager.cancelAll();
         super.onDestroy();
+
+
     }
 
     @Override
@@ -170,6 +181,7 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
 
 
+
         drawer.closeDrawers();
     }
 
@@ -200,5 +212,11 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
         notificationManager.notify(1, notification);
+    }
+
+    public void exitProgram() {
+        finish();
+        System.exit(0);
+
     }
 }

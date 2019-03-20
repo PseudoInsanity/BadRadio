@@ -32,6 +32,7 @@ public class StartFragment extends Fragment {
 
     private VideoView videoView;
     private Button signBtn, regBtn, forgotBtn;
+    private Fragment fragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,4 +110,9 @@ public class StartFragment extends Fragment {
     public void onStart() {
         super.onStart();
     }
+
+    public boolean isStartFragment() {
+        return fragment.isInLayout();
+    }
+
 }
