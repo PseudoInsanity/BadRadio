@@ -13,7 +13,6 @@ import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
 
 public class MusicService extends Service {
 
-    //TODO Fix so that the media player staticUrl changes accordingly to Firebase-RadioStaion getUrl()
     private MediaPlayer mediaPlayer;
     private static String url;
     private static String currStation = "Choose a station";
