@@ -43,7 +43,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.radioTitle.setText(mList.get(position).getName());
         MusicService.setUrl(mList.get(position).getUrl());
-        //System.out.println(mList.get(position).getUrl());
+        System.out.println(mList.get(position).getUrl());
 
 
         if (position == lastPos) {

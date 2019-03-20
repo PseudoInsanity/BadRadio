@@ -14,8 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.radio_related.RadioStation;
 import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
+
+import java.util.ArrayList;
 
 
 public class PlayerFragment extends Fragment{
@@ -23,10 +27,12 @@ public class PlayerFragment extends Fragment{
 
     public PlayerFragment() {}
 
+    private ArrayList<RadioStation> mList;
     private ImageView imageButton;
     private VideoView videoView;
     private static View view;
     public static boolean playing = false;
+    private int lastPos;
 
 
 
@@ -39,6 +45,8 @@ public class PlayerFragment extends Fragment{
 
         videoView = view.findViewById(R.id.videoView);
         imageButton = view.findViewById(R.id.imageButton);
+
+
 
         if (savedInstanceState != null) {
             playBackground();
@@ -57,20 +65,19 @@ public class PlayerFragment extends Fragment{
         }
 
         //playButtonAnimation();
-        handlePlayButton();
+        handlePlayButton(lastPos);
         playBackground();
 
         return view;
     }
 
 
-    private void handlePlayButton() {
+    private void handlePlayButton(final int position) {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (playing) {
-
+                if (playing && position == lastPos) {
                     imageButton.setImageResource(R.drawable.ic_pause24dp);
                     playing = false;
 
@@ -79,18 +86,13 @@ public class PlayerFragment extends Fragment{
                     getActivity().stopService(i);
 
 
-
-
                 } else if (!playing) {
-
                     imageButton.setImageResource(R.drawable.ic_play24dp);
                     playing = true;
 
                     //Called for music service to start
                     Intent i = new Intent(view.getContext(), MusicService.class);
                     getActivity().startService(i);
-
-
                 }
 
                 Drawable drawable = imageButton.getDrawable();
