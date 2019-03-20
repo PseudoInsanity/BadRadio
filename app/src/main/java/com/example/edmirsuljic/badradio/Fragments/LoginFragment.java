@@ -1,6 +1,7 @@
 package com.example.edmirsuljic.badradio.Fragments;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,7 +34,6 @@ public class LoginFragment extends Fragment {
 
     private FloatingActionButton signFab, backFab;
     private EditText emailTxt, passwordTxt;
-    private VideoView vidView;
     private FirebaseAuth authUser;
 
     @Override
@@ -44,11 +44,8 @@ public class LoginFragment extends Fragment {
         backFab = view.findViewById(R.id.exitSignFab);
         emailTxt = view.findViewById(R.id.signMailTxt);
         passwordTxt = view.findViewById(R.id.signPasswTxt);
-        vidView = view.findViewById(R.id.loginVid);
 
         authUser = FirebaseAuth.getInstance();
-
-        playBackground();
 
         signFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,28 +114,6 @@ public class LoginFragment extends Fragment {
 
     private boolean isPasswordValid(String password) {
         return password.matches("[0-9a-zA-Z]{6,16}");
-    }
-
-    private void playBackground () {
-
-        vidView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-
-                vidView.start();
-            }
-        });
-
-        Uri uri = Uri.parse("android.resource://com.example.edmirsuljic.badradio/" + R.raw.badradio_vid);
-        vidView.setVideoURI(uri);
-        vidView.start();
-    }
-
-    @Override
-    public void onStart () {
-        super.onStart();
-
-        playBackground();
     }
 
 

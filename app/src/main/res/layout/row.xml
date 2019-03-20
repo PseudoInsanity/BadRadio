@@ -24,7 +24,7 @@
             android:textSize="32sp" />
 
         <ImageView
-            android:id="@+id/button"
+            android:id="@+id/rowPlayButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="end"

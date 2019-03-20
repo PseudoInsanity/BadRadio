@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.MusicService;
+package com.example.edmirsuljic.badradio.Service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,14 +6,21 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
+
 import java.io.IOException;
+
+import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
 
 public class MusicService extends Service {
 
-
+    //TODO Fix so that the media player staticUrl changes accordingly to Firebase-RadioStaion getUrl()
     private MediaPlayer mediaPlayer;
+    private static String url;
+    private static String currStation = "Choose a station";
 
-    public MusicService() {}
+
+    public MusicService() {
+    }
 
     //This is the method that is called when getActivity().startService(i); is called
     @Override
@@ -23,35 +30,42 @@ public class MusicService extends Service {
 
             mediaPlayer = new MediaPlayer();
 
+
             //sets sound src file
-            try {
-                mediaPlayer.setDataSource("http://fm01-ice.stream.khz.se/fm01_mp3");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            url = intent.getStringExtra("stationURL");
+            currStation = intent.getStringExtra("stationName");
+
+            mediaPlayer.setDataSource(url);
 
             //prepares the player for playback
             mediaPlayer.prepare();
 
             //starts the playback
             mediaPlayer.start();
+            // isPlaying = true;
+
+            playing = true;
 
         } catch (IOException e) {
             e.printStackTrace();
-            Log.i("show","Error: "+ e.toString());
+            Log.i("show", "Error: " + e.toString());
         }
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     //This is the method that is called when getActivity().startStop(i); is called
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
 
         //stops the playback
         mediaPlayer.stop();
         //releases any resource attached with the MediaPlayer
         mediaPlayer.release();
+        // isPlaying = false;
+
+        playing = false;
 
     }
 
@@ -60,4 +74,11 @@ public class MusicService extends Service {
         return null;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public static String getCurrStation() {
+        return currStation;
+    }
 }

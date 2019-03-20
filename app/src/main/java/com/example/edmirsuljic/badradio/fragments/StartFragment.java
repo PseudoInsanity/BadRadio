@@ -37,7 +37,7 @@ public class StartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_start, container, false);
-        videoView = view.findViewById(R.id.signInVideoView);
+       // videoView = view.findViewById(R.id.signInVideoView);
         signBtn = view.findViewById(R.id.signinBtn);
         regBtn = view.findViewById(R.id.regBtn);
         forgotBtn = view.findViewById(R.id.forgotPasswordStart);
@@ -68,11 +68,12 @@ public class StartFragment extends Fragment {
         forgotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final EditText editText = new EditText(view.getContext());
                 editText.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary),
                         PorterDuff.Mode.SRC_ATOP);
                 editText.setTextColor(getResources().getColor(R.color.colorPrimary));
-                editText.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+                editText.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
                 AlertDialog dialog = new AlertDialog.Builder(view.getContext(), R.style.AlertDialog)
                         .setTitle("Enter Email")
                         .setView(editText)
@@ -101,31 +102,11 @@ public class StartFragment extends Fragment {
             }
         });
 
-        playBackground();
-
         return view;
     }
 
-    private void playBackground () {
-
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-
-                videoView.start();
-            }
-        });
-
-        Uri uri = Uri.parse("android.resource://com.example.edmirsuljic.badradio/" + R.raw.badradio_vid);
-        videoView.setVideoURI(uri);
-        videoView.start();
-    }
-
     @Override
-    public void onStart () {
+    public void onStart() {
         super.onStart();
-
-        playBackground();
     }
-
 }

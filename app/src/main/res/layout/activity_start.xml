@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".Activities.StartActivity">
 
+    <VideoView
+        android:id="@+id/startVid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/start_fragment_holder"
         android:layout_width="match_parent"

@@ -1,10 +1,13 @@
 package com.example.edmirsuljic.badradio.Activities;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.VideoView;
 
 import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
@@ -14,6 +17,7 @@ import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificat
 
 public class StartActivity extends AppCompatActivity {
 
+    private VideoView videoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,9 @@ public class StartActivity extends AppCompatActivity {
 
         RadioHandler radioHandler = new RadioHandler();
         radioHandler.getRadioStation();
+
+        videoView = findViewById(R.id.startVid);
+        playBackground();
 
         Fragment fragment = new StartFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -40,8 +47,23 @@ public class StartActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        playBackground();
 
+    }
 
+    private void playBackground () {
+
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+
+                videoView.start();
+            }
+        });
+
+        Uri uri = Uri.parse("android.resource://com.example.edmirsuljic.badradio/" + R.raw.badradio_vid);
+        videoView.setVideoURI(uri);
+        videoView.start();
     }
 
 }

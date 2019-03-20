@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
 import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
+import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 
 public class HomeFragment extends Fragment {
 
@@ -29,10 +29,6 @@ public class HomeFragment extends Fragment {
         View inflate = inflater.inflate(R.layout.fragment_home, container, false);
 
         radioHandler = new RadioHandler();
-
-        for (RadioStation r : radioHandler.getRadioStationList()) {
-            System.out.println("namn: " + r.getName());
-        }
 
         buildRecyclerView(inflate);
 

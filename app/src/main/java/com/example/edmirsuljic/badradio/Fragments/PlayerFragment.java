@@ -1,26 +1,18 @@
 package com.example.edmirsuljic.badradio.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.media.AudioManager;
 import android.os.Bundle;
-import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.MusicService.MusicService;
+import com.example.edmirsuljic.badradio.Service.MusicService;
 import com.example.edmirsuljic.badradio.R;
-
-import java.util.Objects;
 
 
 public class PlayerFragment extends DialogFragment {
@@ -45,7 +37,7 @@ public class PlayerFragment extends DialogFragment {
         //Init state of playbutton
         if (playing) {
 
-            imageButton.setImageResource(R.drawable.ic_play24dp);
+            imageButton.setImageResource(R.drawable.ic_pause24dp);
 
 
         } else if (!playing) {
@@ -54,7 +46,7 @@ public class PlayerFragment extends DialogFragment {
 
         }
 
-        playButtonHandle(view);
+        playButtonHandle();
 
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +61,7 @@ public class PlayerFragment extends DialogFragment {
     }
 
     //Handling the play/pause button
-    private void playButtonHandle (View view) {
+    private void playButtonHandle () {
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +70,7 @@ public class PlayerFragment extends DialogFragment {
 
                 if (playing) {
 
-                    imageButton.setImageResource(R.drawable.ic_play24dp);
+                    imageButton.setImageResource(R.drawable.ic_pause24dp);
                     playing = false;
 
                     //Called for music service to stop
@@ -86,19 +78,20 @@ public class PlayerFragment extends DialogFragment {
                     getActivity().stopService(i);
 
 
-
-
                 } else if (!playing) {
 
-                    imageButton.setImageResource(R.drawable.ic_pause24dp);
+                    imageButton.setImageResource(R.drawable.ic_play24dp);
                     playing = true;
+
+                    MusicService service = new MusicService();
 
                     //Called for music service to start
                     Intent i = new Intent(view.getContext(), MusicService.class);
+                    i.putExtra("stationURL", service.getUrl());
+                    i.putExtra("stationName", service.getCurrStation());
                     getActivity().startService(i);
-
-
                 }
+
             }
         });
     }

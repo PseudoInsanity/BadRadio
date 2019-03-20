@@ -32,7 +32,6 @@ public class RegisterFragment extends Fragment {
 
     private FloatingActionButton regFab, backFab;
     private EditText emailTxt, passwordTxt;
-    private VideoView videoView;
     private FirebaseAuth authUser;
 
     @Override
@@ -43,11 +42,9 @@ public class RegisterFragment extends Fragment {
         backFab = view.findViewById(R.id.exitRegFab);
         emailTxt = view.findViewById(R.id.regMailTxt);
         passwordTxt = view.findViewById(R.id.regPasswTxt);
-        videoView = view.findViewById(R.id.regVidView);
 
         authUser = FirebaseAuth.getInstance();
 
-        playBackground();
 
         regFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,28 +112,10 @@ public class RegisterFragment extends Fragment {
         return password.matches("[0-9a-zA-Z]{6,16}");
     }
 
-    private void playBackground () {
-
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-
-                videoView.start();
-            }
-        });
-
-        Uri uri = Uri.parse("android.resource://com.example.edmirsuljic.badradio/" + R.raw.badradio_vid);
-        videoView.setVideoURI(uri);
-        videoView.start();
-    }
-
     @Override
-    public void onStart () {
+    public void onStart() {
         super.onStart();
-
-        playBackground();
     }
-
 
 
 }
