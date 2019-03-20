@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Adapters;
+package com.example.edmirsuljic.badradio.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,16 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.edmirsuljic.badradio.Activities.MainActivity;
-import com.example.edmirsuljic.badradio.Service.MusicService;
+import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
+import com.example.edmirsuljic.badradio.radio_related.RadioStation;
 
 import java.util.ArrayList;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
 
-    private ArrayList<RadioStation> mList;
+    public static ArrayList<RadioStation> mList;
     private OnItemClickListener mListener;
     private int lastPos = -1;
 

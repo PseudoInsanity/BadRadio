@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Activities;
+package com.example.edmirsuljic.badradio.activities;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.Fragments.StartFragment;
+import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
+import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
 
-import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificationManager;
+import static com.example.edmirsuljic.badradio.activities.MainActivity.notificationManager;
 
 public class StartActivity extends AppCompatActivity {
 

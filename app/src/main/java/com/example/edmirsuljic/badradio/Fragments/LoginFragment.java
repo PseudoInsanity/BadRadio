@@ -1,9 +1,6 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,9 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.Activities.MainActivity;
+import com.example.edmirsuljic.badradio.activities.MainActivity;
 import com.example.edmirsuljic.badradio.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;

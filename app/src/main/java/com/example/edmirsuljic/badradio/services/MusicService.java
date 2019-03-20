@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Service;
+package com.example.edmirsuljic.badradio.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
+import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
 
 public class MusicService extends Service {
 
@@ -74,7 +74,7 @@ public class MusicService extends Service {
         return null;
     }
 
-    public String getUrl() {
+    public static String getUrl() {
         return url;
     }
 

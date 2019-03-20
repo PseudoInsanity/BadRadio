@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Service;
+package com.example.edmirsuljic.badradio.services;
 
 import android.app.Application;
 import android.app.Notification;
