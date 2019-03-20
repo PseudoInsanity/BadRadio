@@ -1,8 +1,9 @@
-package com.example.edmirsuljic.badradio.fragments;
+package com.example.edmirsuljic.badradio.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,8 @@ import android.widget.ImageButton;
 
 import com.example.edmirsuljic.badradio.R;
 
-public class ShareFragment extends Fragment implements View.OnClickListener{
+public class ShareFragment extends DialogFragment implements View.OnClickListener{
     private ImageButton twitter, facebook, instagram;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,7 +26,6 @@ public class ShareFragment extends Fragment implements View.OnClickListener{
         twitter.setOnClickListener(this);
         facebook.setOnClickListener(this);
         instagram.setOnClickListener(this);
-
 
         return inflate;
     }

@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.fragments;
+package com.example.edmirsuljic.badradio.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,25 +6,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
-import com.example.edmirsuljic.badradio.radio_related.RadioStation;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
+import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
 
 public class HomeFragment extends Fragment {
 

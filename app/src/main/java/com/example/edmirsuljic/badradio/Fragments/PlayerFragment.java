@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.fragments;
+package com.example.edmirsuljic.badradio.Fragments;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -7,25 +7,28 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.services.MusicService;
+import com.example.edmirsuljic.badradio.MusicService.MusicService;
 import com.example.edmirsuljic.badradio.R;
 
+import java.util.Objects;
 
-public class PlayerFragment extends Fragment{
+
+public class PlayerFragment extends DialogFragment {
 
 
     public PlayerFragment() {}
 
-    private ImageView imageButton;
-    private VideoView videoView;
-    private static View view;
+    private ImageView imageButton, shareBtn;
     public static boolean playing = false;
 
 
@@ -34,35 +37,39 @@ public class PlayerFragment extends Fragment{
                              Bundle savedInstanceState) {
 
 
-        view = inflater.inflate(R. layout.fragment_player, container, false);
+        final View view = inflater.inflate(R. layout.fragment_player, container, false);
 
-        videoView = view.findViewById(R.id.videoView);
         imageButton = view.findViewById(R.id.imageButton);
-
-        if (savedInstanceState != null) {
-            playBackground();
-        }
+        shareBtn = view.findViewById(R.id.shareBtn);
 
         //Init state of playbutton
         if (playing) {
 
-            imageButton.setImageResource(R.drawable.avd_anim_two);
+            imageButton.setImageResource(R.drawable.ic_play24dp);
 
 
         } else if (!playing) {
 
-            imageButton.setImageResource(R.drawable.avd_anim);
+            imageButton.setImageResource(R.drawable.ic_play24dp);
 
         }
 
-        playButtonAnimation();
-        playBackground();
+        playButtonHandle(view);
+
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                ShareFragment dialogFragment = new ShareFragment();
+                dialogFragment.show(fm, "Sample Fragment");
+            }
+        });
 
         return view;
     }
 
     //Handling the play/pause button
-    private void playButtonAnimation () {
+    private void playButtonHandle (View view) {
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +78,7 @@ public class PlayerFragment extends Fragment{
 
                 if (playing) {
 
-                    imageButton.setImageResource(R.drawable.avd_anim_two);
+                    imageButton.setImageResource(R.drawable.ic_play24dp);
                     playing = false;
 
                     //Called for music service to stop
@@ -83,7 +90,7 @@ public class PlayerFragment extends Fragment{
 
                 } else if (!playing) {
 
-                    imageButton.setImageResource(R.drawable.avd_anim);
+                    imageButton.setImageResource(R.drawable.ic_pause24dp);
                     playing = true;
 
                     //Called for music service to start
@@ -92,44 +99,7 @@ public class PlayerFragment extends Fragment{
 
 
                 }
-
-                Drawable drawable = imageButton.getDrawable();
-                if (drawable instanceof AnimatedVectorDrawableCompat) {
-
-                    AnimatedVectorDrawableCompat compat = (AnimatedVectorDrawableCompat) drawable;
-                    compat.start();
-
-
-                } else if (drawable instanceof AnimatedVectorDrawable) {
-
-                    AnimatedVectorDrawable vectorDrawable = (AnimatedVectorDrawable) drawable;
-                    vectorDrawable.start();
-
-                }
             }
         });
-    }
-
-    //Plays the moving background in a videoview
-    private void playBackground () {
-
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-
-                videoView.start();
-            }
-        });
-
-        Uri uri = Uri.parse("android.resource://com.example.edmirsuljic.badradio/" + R.raw.vid);
-        videoView.setVideoURI(uri);
-        videoView.start();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-
     }
 }

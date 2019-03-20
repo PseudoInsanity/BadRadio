@@ -1,0 +1,40 @@
+package com.example.edmirsuljic.badradio.Radio_Related;
+
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+
+public class RadioHandler {
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static ArrayList<RadioStation> radioStationList;
+
+    public void getRadioStation() {
+
+        radioStationList = new ArrayList<>();
+        db.collection("radioStations")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot q: queryDocumentSnapshots) {
+                            radioStationList.add(new RadioStation(q.getString("name"), q.getString("url")));
+                            Log.d("Edmir", "Success");
+                        }
+                    }
+                });
+
+        for (int i = 0; i < 8; i++) {
+            radioStationList.add(new RadioStation("Test" + i, "qqq"));
+        }
+    }
+
+    public ArrayList<RadioStation> getRadioStationList() {
+        return radioStationList;
+    }
+}
