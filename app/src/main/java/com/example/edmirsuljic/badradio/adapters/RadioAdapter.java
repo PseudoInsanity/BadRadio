@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
 
-    private ArrayList<RadioStation> mList;
+    public static ArrayList<RadioStation> mList;
     private OnItemClickListener mListener;
     private ViewHolder viewHolder;
     private int lastPos;

@@ -11,9 +11,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.edmirsuljic.badradio.R;
+import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.radio_related.RadioStation;
+import com.example.edmirsuljic.badradio.services.MusicService;
+
+import java.util.ArrayList;
 
 public class ShareFragment extends Fragment implements View.OnClickListener{
     private Button share;
+    private ArrayList<RadioStation> mList;
 
 
     @Override
@@ -46,7 +52,8 @@ public class ShareFragment extends Fragment implements View.OnClickListener{
     }*/
 
     public void openAppToShare(View view) {
-        String message = "I'm listening to (station)! You can too: (url)";
+        String radioStation = RadioAdapter.mList.get(0).getName();
+        String message = "I'm listening to " + radioStation + "! You can too: (url)";
 
 
         Intent shareIntent = new Intent();
@@ -60,6 +67,8 @@ public class ShareFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+
+        int position = 0;
         openAppToShare(v);
     }
 }

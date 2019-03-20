@@ -13,6 +13,7 @@ public class MusicService extends Service {
 
     private MediaPlayer mediaPlayer;
 
+
     public MusicService() {}
 
     //This is the method that is called when getActivity().startService(i); is called
