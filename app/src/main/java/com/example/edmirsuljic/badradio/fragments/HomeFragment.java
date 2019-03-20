@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
-import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
-import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
+import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
 
 public class HomeFragment extends Fragment {
 
