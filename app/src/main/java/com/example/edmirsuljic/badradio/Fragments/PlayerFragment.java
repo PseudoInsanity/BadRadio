@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.edmirsuljic.badradio.music_service.MusicService;
+
+import com.example.edmirsuljic.badradio.services.MusicService;
+import com.example.edmirsuljic.badradio.fragments.ShareFragment;
+import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
 
 
@@ -35,7 +38,7 @@ public class PlayerFragment extends DialogFragment {
         //Init state of playbutton
         if (playing) {
 
-            imageButton.setImageResource(R.drawable.ic_play24dp);
+            imageButton.setImageResource(R.drawable.ic_pause24dp);
 
 
         } else if (!playing) {
@@ -44,7 +47,7 @@ public class PlayerFragment extends DialogFragment {
 
         }
 
-        playButtonHandle(view);
+        playButtonHandle();
 
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,7 @@ public class PlayerFragment extends DialogFragment {
     }
 
     //Handling the play/pause button
-    private void playButtonHandle (View view) {
+    private void playButtonHandle () {
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +71,7 @@ public class PlayerFragment extends DialogFragment {
 
                 if (playing) {
 
-                    imageButton.setImageResource(R.drawable.ic_play24dp);
+                    imageButton.setImageResource(R.drawable.ic_pause24dp);
                     playing = false;
 
                     //Called for music service to stop
@@ -76,19 +79,20 @@ public class PlayerFragment extends DialogFragment {
                     getActivity().stopService(i);
 
 
-
-
                 } else if (!playing) {
 
-                    imageButton.setImageResource(R.drawable.ic_pause24dp);
+                    imageButton.setImageResource(R.drawable.ic_play24dp);
                     playing = true;
+
+                    MusicService service = new MusicService();
 
                     //Called for music service to start
                     Intent i = new Intent(view.getContext(), MusicService.class);
+                    i.putExtra("stationURL", service.getUrl());
+                    i.putExtra("stationName", service.getCurrStation());
                     getActivity().startService(i);
-
-
                 }
+
             }
         });
     }

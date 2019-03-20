@@ -23,13 +23,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.example.edmirsuljic.badradio.Fragments.HomeFragment;
+import com.example.edmirsuljic.badradio.fragments.AccountFragment;
+import com.example.edmirsuljic.badradio.fragments.HomeFragment;
 import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.music_service.NotifyBroadcast;
+import com.example.edmirsuljic.badradio.services.MusicService;
+import com.example.edmirsuljic.badradio.services.NotifyBroadcast;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static com.example.edmirsuljic.badradio.music_service.NotifyChannel.MUSIC_CHANNEL;
+import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
+import static com.example.edmirsuljic.badradio.services.NotifyChannel.MUSIC_CHANNEL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -127,13 +130,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onStop() {
-        notificationManager.cancelAll();
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
+        FirebaseAuth.getInstance().signOut();
         notificationManager.cancelAll();
         super.onDestroy();
     }
@@ -154,6 +152,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_account:
+                fragmentClass = AccountFragment.class;
                 break;
         }
 
@@ -181,16 +180,18 @@ public class MainActivity extends AppCompatActivity
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 clickedIntent, 0);
 
-        remoteViews.setOnClickPendingIntent(R.id.imageView3, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.notiBtn, pendingIntent);
 
-        if (PlayerFragment.playing) {
+        if (playing) {
 
-            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim_two);
+            remoteViews.setImageViewResource(R.id.notiBtn, R.drawable.ic_pause24dp);
 
-        } else if (!PlayerFragment.playing) {
+        } else if (!playing) {
 
-            remoteViews.setImageViewResource(R.id.imageView3, R.drawable.avd_anim);
+            remoteViews.setImageViewResource(R.id.notiBtn, R.drawable.ic_play24dp);
         }
+
+        remoteViews.setTextViewText(R.id.notiStation, MusicService.getCurrStation());
 
         notification = new NotificationCompat.Builder(context, MUSIC_CHANNEL)
                 .setSmallIcon(R.drawable.logo)
@@ -199,5 +200,4 @@ public class MainActivity extends AppCompatActivity
 
         notificationManager.notify(1, notification);
     }
-
 }

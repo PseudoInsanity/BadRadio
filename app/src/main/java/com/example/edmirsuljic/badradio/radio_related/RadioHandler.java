@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Radio_Related;
+package com.example.edmirsuljic.badradio.radio_related;
 
 import android.util.Log;
 
@@ -28,10 +28,6 @@ public class RadioHandler {
                         }
                     }
                 });
-
-        for (int i = 0; i < 8; i++) {
-            radioStationList.add(new RadioStation("Test" + i, "qqq"));
-        }
     }
 
     public ArrayList<RadioStation> getRadioStationList() {
