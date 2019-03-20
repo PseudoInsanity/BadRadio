@@ -1,26 +1,16 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.MusicService.MusicService;
+import com.example.edmirsuljic.badradio.music_service.MusicService;
 import com.example.edmirsuljic.badradio.R;
-
-import java.util.Objects;
 
 
 public class PlayerFragment extends DialogFragment {

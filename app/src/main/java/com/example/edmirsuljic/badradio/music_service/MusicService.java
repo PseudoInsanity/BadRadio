@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.MusicService;
+package com.example.edmirsuljic.badradio.music_service;
 
 import android.app.Service;
 import android.content.Intent;

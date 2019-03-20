@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Activities;
+package com.example.edmirsuljic.badradio.activities;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -24,12 +24,12 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.example.edmirsuljic.badradio.Fragments.HomeFragment;
-import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
+import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.MusicService.NotifyBroadcast;
+import com.example.edmirsuljic.badradio.music_service.NotifyBroadcast;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static com.example.edmirsuljic.badradio.MusicService.NotifyChannel.MUSIC_CHANNEL;
+import static com.example.edmirsuljic.badradio.music_service.NotifyChannel.MUSIC_CHANNEL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

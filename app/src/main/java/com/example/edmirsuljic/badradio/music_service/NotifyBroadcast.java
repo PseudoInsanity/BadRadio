@@ -1,11 +1,11 @@
-package com.example.edmirsuljic.badradio.MusicService;
+package com.example.edmirsuljic.badradio.music_service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.edmirsuljic.badradio.Activities.MainActivity;
-import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
+import com.example.edmirsuljic.badradio.activities.MainActivity;
+import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
 
 public class NotifyBroadcast extends BroadcastReceiver {

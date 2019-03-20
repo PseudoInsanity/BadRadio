@@ -5,4 +5,12 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
+
+
+    <style name="AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">#80048D</item>
+        <item name="android:textColorPrimary">#80048D</item>
+        <item name="android:colorAccent">#E1E109</item>
+    </style>
+
 </resources>

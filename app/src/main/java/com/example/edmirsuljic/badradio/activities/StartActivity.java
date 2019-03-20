@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Activities;
+package com.example.edmirsuljic.badradio.activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.edmirsuljic.badradio.Fragments.StartFragment;
+import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
 
-import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificationManager;
+import static com.example.edmirsuljic.badradio.activities.MainActivity.notificationManager;
 
 public class StartActivity extends AppCompatActivity {
 
