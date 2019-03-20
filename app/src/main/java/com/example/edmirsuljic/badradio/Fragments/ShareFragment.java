@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.fragments;
+package com.example.edmirsuljic.badradio.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
-import com.example.edmirsuljic.badradio.radio_related.RadioStation;
+import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
 import com.example.edmirsuljic.badradio.services.MusicService;
 
 import java.util.ArrayList;
@@ -37,24 +37,6 @@ public class ShareFragment extends DialogFragment implements View.OnClickListene
 
         return inflate;
     }
-
-
-    /*public void openTwitter(View view) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_SEND);
-
-        intent.setType("text/hello");
-        intent.putExtra(Intent.EXTRA_TEXT, "https://www.google.com");
-        startActivity(Intent.createChooser(intent, "Share"));
-
-        Intent twitterIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/login"));
-        startActivity(twitterIntent);
-
-    }
-    public void openInstagram(View view) {
-        Intent instagramIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/accounts/login/"));
-        startActivity(instagramIntent);
-    }*/
 
     public void openAppToShare(View view) {
         String radioStation = MusicService.getCurrStation();

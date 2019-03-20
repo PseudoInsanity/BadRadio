@@ -9,12 +9,12 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
+import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
 
 public class MusicService extends Service {
 
     private MediaPlayer mediaPlayer;
-    private static String url;
+    private static String url = "No station used";
     private static String currStation = "Choose a station";
 
 

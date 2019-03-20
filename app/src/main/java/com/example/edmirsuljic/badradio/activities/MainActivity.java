@@ -23,15 +23,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.example.edmirsuljic.badradio.fragments.AccountFragment;
-import com.example.edmirsuljic.badradio.fragments.HomeFragment;
-import com.example.edmirsuljic.badradio.fragments.PlayerFragment;
+import com.example.edmirsuljic.badradio.Fragments.AccountFragment;
+import com.example.edmirsuljic.badradio.Fragments.HomeFragment;
+import com.example.edmirsuljic.badradio.Fragments.PlayerFragment;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.services.NotifyBroadcast;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
+import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
 import static com.example.edmirsuljic.badradio.services.NotifyChannel.MUSIC_CHANNEL;
 
 public class MainActivity extends AppCompatActivity
@@ -62,9 +62,12 @@ public class MainActivity extends AppCompatActivity
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getSupportFragmentManager();
-                PlayerFragment dialogFragment = new PlayerFragment ();
-                dialogFragment.show(fm, "Sample Fragment");
+                Fragment fragment = new PlayerFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragment_holder, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

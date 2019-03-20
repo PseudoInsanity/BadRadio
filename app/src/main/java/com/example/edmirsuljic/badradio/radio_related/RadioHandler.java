@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.radio_related;
+package com.example.edmirsuljic.badradio.Radio_Related;
 
 import android.util.Log;
 

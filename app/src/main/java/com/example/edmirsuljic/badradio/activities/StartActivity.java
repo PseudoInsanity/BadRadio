@@ -9,9 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.fragments.StartFragment;
+import com.example.edmirsuljic.badradio.Fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
+import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
 
 import static com.example.edmirsuljic.badradio.activities.MainActivity.notificationManager;
 

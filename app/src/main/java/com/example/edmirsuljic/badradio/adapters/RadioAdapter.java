@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.adapters;
+package com.example.edmirsuljic.badradio.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,16 +12,17 @@ import android.widget.TextView;
 
 import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.radio_related.RadioStation;
+import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
 
 import java.util.ArrayList;
+
+import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
 
     public static ArrayList<RadioStation> mList;
     private OnItemClickListener mListener;
-    private int lastPos = -1;
-
+    private static int lastPos;
 
     public RadioAdapter(ArrayList<RadioStation> mList) {
         this.mList = mList;
@@ -33,14 +34,24 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
         View listView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
 
+        if (!playing) {
+
+            lastPos = -1;
+
+        }
+
         return new ViewHolder(listView, mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.radioTitle.setText(mList.get(position).getName());
-        System.out.println("URL33: " + mList.get(position).getUrl());
 
+        if (!playing) {
+
+            lastPos = -1;
+
+        }
 
         if (position == lastPos) {
             holder.playButton.setImageResource(R.drawable.ic_pause24dp);
