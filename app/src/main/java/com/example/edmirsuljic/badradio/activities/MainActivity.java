@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         notificationManager = NotificationManagerCompat.from(context);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

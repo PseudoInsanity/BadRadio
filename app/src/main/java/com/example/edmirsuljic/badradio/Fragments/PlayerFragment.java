@@ -11,8 +11,6 @@ import android.widget.ImageView;
 
 
 import com.example.edmirsuljic.badradio.services.MusicService;
-import com.example.edmirsuljic.badradio.fragments.ShareFragment;
-import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
 
 
@@ -23,6 +21,7 @@ public class PlayerFragment extends DialogFragment {
 
     private ImageView imageButton, shareBtn;
     public static boolean playing = false;
+
 
 
     @Override

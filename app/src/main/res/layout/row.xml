@@ -18,10 +18,11 @@
             android:id="@+id/radioStation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/basicaline_noncommercial"
             android:background="@color/colorPrimary"
             android:paddingLeft="10dp"
             android:textColor="@color/colorAccent"
-            android:textSize="32sp" />
+            android:textSize="38sp" />
 
         <ImageView
             android:id="@+id/rowPlayButton"
