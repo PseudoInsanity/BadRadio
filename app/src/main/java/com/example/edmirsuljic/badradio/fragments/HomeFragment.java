@@ -20,6 +20,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RadioAdapter adapter;
+    public static int lastPos = -1;
 
 
     @Override

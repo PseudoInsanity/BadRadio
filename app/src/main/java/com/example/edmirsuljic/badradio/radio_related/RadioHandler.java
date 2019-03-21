@@ -14,7 +14,7 @@ public class RadioHandler {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static ArrayList<RadioStation> radioStationList;
 
-    public void getRadioStation() {
+    public boolean getRadioStation() {
 
         radioStationList = new ArrayList<>();
         db.collection("radioStations")
@@ -28,6 +28,8 @@ public class RadioHandler {
                         }
                     }
                 });
+
+        return true;
     }
 
     public ArrayList<RadioStation> getRadioStationList() {

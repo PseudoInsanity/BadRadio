@@ -41,12 +41,15 @@ public class MainActivity extends AppCompatActivity
     private Context context = this;
     public static NotificationManagerCompat notificationManager;
     public static Notification notification;
+    private static boolean notiOn = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        notiOn = true;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +82,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_holder, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -88,7 +90,12 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+            if (backStackEntryCount == 0) {
+                moveTaskToBack(true);   // write your code to switch between fragments.
+            } else {
+                super.onBackPressed();
+            }
         }
 
     }
@@ -109,10 +116,14 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            notificationManager.cancelAll();
+
+            notiOn = false;
             FirebaseAuth.getInstance().signOut();
+
             Intent intent = new Intent(context, StartActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
             return true;
         }
 
@@ -128,20 +139,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPause() {
-        showNotification();
+        if (notiOn) {
+            showNotification();
+        } else if (!notiOn) {
+            notificationManager.cancelAll();
+            Intent i = new Intent(context, MusicService.class);
+            context.stopService(i);
+        }
 
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
-        FirebaseAuth.getInstance().signOut();
+        notiOn = false;
         notificationManager.cancelAll();
         super.onDestroy();
     }
 
     @Override
     public void onStart() {
+        notiOn = true;
         notificationManager.cancelAll();
         super.onStart();
     }

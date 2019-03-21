@@ -16,13 +16,13 @@ import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
 
 import java.util.ArrayList;
 
+import static com.example.edmirsuljic.badradio.Fragments.HomeFragment.lastPos;
 import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> {
 
     public static ArrayList<RadioStation> mList;
     private OnItemClickListener mListener;
-    private static int lastPos;
 
     public RadioAdapter(ArrayList<RadioStation> mList) {
         this.mList = mList;
@@ -34,24 +34,12 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
         View listView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
 
-        if (!playing) {
-
-            lastPos = -1;
-
-        }
-
         return new ViewHolder(listView, mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.radioTitle.setText(mList.get(position).getName());
-
-        if (!playing) {
-
-            lastPos = -1;
-
-        }
 
         if (position == lastPos) {
             holder.playButton.setImageResource(R.drawable.ic_pause24dp);
@@ -98,6 +86,8 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
         Context context = view.getContext();
         if (lastPos == position) {
 
+            playing = false;
+
             Intent i = new Intent(context, MusicService.class);
             context.stopService(i);
             int prevPos = lastPos;
@@ -105,7 +95,10 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
             notifyItemChanged(prevPos);
             notifyItemChanged(lastPos);
 
+
         } else {
+
+            playing = true;
 
             Intent i = new Intent(context, MusicService.class);
             context.stopService(i);

@@ -46,8 +46,6 @@ public class MusicService extends Service {
                     mediaPlayer.start();
                     // isPlaying = true;
 
-                    playing = true;
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.i("show", "Error: " + e.toString());
@@ -69,7 +67,6 @@ public class MusicService extends Service {
         mediaPlayer.release();
         // isPlaying = false;
 
-        playing = false;
 
     }
 

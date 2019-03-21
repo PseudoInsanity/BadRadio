@@ -84,7 +84,10 @@ public class LoginFragment extends Fragment {
 
                             if (user.isEmailVerified()) {
                                 Intent intent = new Intent(v.getContext(), MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
+                                getActivity().finish();
+
 
                             } else {
 

@@ -23,6 +23,13 @@
         android:roundIcon="@mipmap/badradio_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".services.MusicService" />
 
@@ -32,19 +39,15 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.MAIN" />
+
             </intent-filter>
         </activity>
-
-
-
         <activity
             android:name=".activities.StartActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
 

@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activities.SplashActivity">
 
+    <VideoView
+        android:id="@+id/splashVid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="197dp"
+        tools:layout_editor_absoluteY="411dp" />
 </android.support.constraint.ConstraintLayout>

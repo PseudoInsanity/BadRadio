@@ -1,6 +1,7 @@
 package com.example.edmirsuljic.badradio.Fragments;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -10,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.VideoView;
 
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
+import com.example.edmirsuljic.badradio.activities.StartActivity;
 import com.example.edmirsuljic.badradio.services.MusicService;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class ShareFragment extends DialogFragment implements View.OnClickListene
     private ImageButton twitter, facebook, instagram;
 
     private Button share;
-    private ArrayList<RadioStation> mList;
+    private VideoView videoView;
 
 
     @Override
@@ -31,8 +34,21 @@ public class ShareFragment extends DialogFragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         final View inflate = inflater.inflate(R.layout.fragment_share, container, false);
         share = inflate.findViewById(R.id.imageViewShare);
+        videoView = inflate.findViewById(R.id.shareVidView);
 
         share.setOnClickListener(this);
+
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+
+                videoView.start();
+            }
+        });
+
+        Uri uri = Uri.parse("android.resource://com.example.edmirsuljic.badradio/" + R.raw.fade_logo_short);
+        videoView.setVideoURI(uri);
+        videoView.start();
 
 
         return inflate;
