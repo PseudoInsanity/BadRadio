@@ -23,6 +23,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
     public static ArrayList<RadioStation> mList;
     private OnItemClickListener mListener;
+    public static int currPos;
 
     public RadioAdapter(ArrayList<RadioStation> mList) {
         this.mList = mList;
@@ -43,6 +44,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.ViewHolder> 
 
         if (position == lastPos) {
             holder.playButton.setImageResource(R.drawable.ic_pause24dp);
+            currPos = position;
         } else {
             holder.playButton.setImageResource(R.drawable.ic_play24dp);
         }

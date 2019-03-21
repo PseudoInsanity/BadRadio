@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.activities;
+package com.example.edmirsuljic.badradio.Activities;
 
 import android.app.Activity;
 import android.app.ActivityOptions;

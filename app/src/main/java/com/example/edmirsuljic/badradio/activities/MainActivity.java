@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.activities;
+package com.example.edmirsuljic.badradio.Activities;
 
 import android.app.Notification;
 import android.app.PendingIntent;

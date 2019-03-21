@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.activities;
+package com.example.edmirsuljic.badradio.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,8 @@ import com.example.edmirsuljic.badradio.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.example.edmirsuljic.badradio.activities.MainActivity.notificationManager;
+import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificationManager;
+import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificationManager;
 
 public class StartActivity extends AppCompatActivity {
 

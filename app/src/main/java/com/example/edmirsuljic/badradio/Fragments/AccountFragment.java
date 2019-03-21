@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.edmirsuljic.badradio.activities.StartActivity;
+import com.example.edmirsuljic.badradio.Activities.StartActivity;
 import com.example.edmirsuljic.badradio.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,6 +63,7 @@ public class AccountFragment extends Fragment  {
                 PorterDuff.Mode.SRC_ATOP);
         pwEdit.setTextColor(getResources().getColor(R.color.colorPrimary));
         pwEdit.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+        pwEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         AlertDialog pwDialog = new AlertDialog.Builder(v.getContext(), R.style.AlertDialog)
                 .setTitle("Enter New Password")
                 .setView(pwEdit)
@@ -102,6 +104,7 @@ public class AccountFragment extends Fragment  {
                 PorterDuff.Mode.SRC_ATOP);
         accPass.setTextColor(getResources().getColor(R.color.colorPrimary));
         accPass.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+        accPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         AlertDialog pwDialog = new AlertDialog.Builder(v.getContext(), R.style.AlertDialog)
                 .setTitle("Enter Password")
                 .setView(accPass)

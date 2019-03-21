@@ -18,6 +18,9 @@ import android.widget.VideoView;
 import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
 
+import static com.example.edmirsuljic.badradio.Adapters.RadioAdapter.currPos;
+import static com.example.edmirsuljic.badradio.Fragments.HomeFragment.lastPos;
+
 
 public class PlayerFragment extends Fragment {
 
@@ -76,6 +79,7 @@ public class PlayerFragment extends Fragment {
 
                     imageButton.setImageResource(R.drawable.ic_play24dp);
                     playing = false;
+                    lastPos = -1;
 
                     //Called for music service to stop
                     Intent i = new Intent(view.getContext(), MusicService.class);
@@ -88,6 +92,7 @@ public class PlayerFragment extends Fragment {
                     playing = true;
 
                     MusicService service = new MusicService();
+                    lastPos = currPos;
 
                     //Called for music service to start
                     Intent i = new Intent(view.getContext(), MusicService.class);

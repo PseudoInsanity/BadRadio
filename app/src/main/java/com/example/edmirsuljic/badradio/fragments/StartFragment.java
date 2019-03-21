@@ -99,6 +99,9 @@ public class StartFragment extends Fragment {
                         .setNegativeButton("Cancel", null)
                         .create();
                 dialog.show();
+
+                editText.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary),
+                        PorterDuff.Mode.SRC_ATOP);
             }
         });
 
@@ -108,5 +111,10 @@ public class StartFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
     }
 }

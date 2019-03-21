@@ -16,7 +16,7 @@ import android.widget.VideoView;
 import com.example.edmirsuljic.badradio.R;
 import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
 import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
-import com.example.edmirsuljic.badradio.activities.StartActivity;
+import com.example.edmirsuljic.badradio.Activities.StartActivity;
 import com.example.edmirsuljic.badradio.services.MusicService;
 
 import java.util.ArrayList;
