@@ -23,34 +23,39 @@ public class MusicService extends Service {
 
     //This is the method that is called when getActivity().startService(i); is called
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
 
-        try {
-
-            mediaPlayer = new MediaPlayer();
+                    mediaPlayer = new MediaPlayer();
 
 
-            //sets sound src file
+                    //sets sound src file
 
-            url = intent.getStringExtra("stationURL");
-            currStation = intent.getStringExtra("stationName");
+                    url = intent.getStringExtra("stationURL");
+                    currStation = intent.getStringExtra("stationName");
 
-            mediaPlayer.setDataSource(url);
+                    mediaPlayer.setDataSource(url);
 
-            //prepares the player for playback
-            mediaPlayer.prepare();
+                    //prepares the player for playback
+                    mediaPlayer.prepare();
 
-            //starts the playback
-            mediaPlayer.start();
-            // isPlaying = true;
+                    //starts the playback
+                    mediaPlayer.start();
+                    // isPlaying = true;
 
-            playing = true;
+                    playing = true;
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.i("show", "Error: " + e.toString());
-        }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.i("show", "Error: " + e.toString());
+                }
 
+
+            }
+        }).start();
         return START_NOT_STICKY;
     }
 

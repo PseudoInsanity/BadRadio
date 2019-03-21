@@ -30,6 +30,7 @@ public class PlayerFragment extends Fragment {
     public static boolean playing = false;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
