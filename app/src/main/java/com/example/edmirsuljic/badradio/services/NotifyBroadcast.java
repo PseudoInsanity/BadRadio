@@ -4,12 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.edmirsuljic.badradio.Activities.MainActivity;
+import com.example.edmirsuljic.badradio.activities.MainActivity;
 import com.example.edmirsuljic.badradio.R;
 
-import static com.example.edmirsuljic.badradio.Adapters.RadioAdapter.currPos;
-import static com.example.edmirsuljic.badradio.Fragments.HomeFragment.lastPos;
-import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
+import static com.example.edmirsuljic.badradio.adapters.RadioAdapter.currPos;
+import static com.example.edmirsuljic.badradio.fragments.HomeFragment.lastPos;
+import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
 
 public class NotifyBroadcast extends BroadcastReceiver {
 

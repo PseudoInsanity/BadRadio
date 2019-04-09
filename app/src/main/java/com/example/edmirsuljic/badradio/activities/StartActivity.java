@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Activities;
+package com.example.edmirsuljic.badradio.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.VideoView;
 
-import com.example.edmirsuljic.badradio.Fragments.StartFragment;
+import com.example.edmirsuljic.badradio.fragments.StartFragment;
 import com.example.edmirsuljic.badradio.R;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificationManager;
-import static com.example.edmirsuljic.badradio.Activities.MainActivity.notificationManager;
+import static com.example.edmirsuljic.badradio.activities.MainActivity.notificationManager;
+import static com.example.edmirsuljic.badradio.activities.MainActivity.notificationManager;
 
 public class StartActivity extends AppCompatActivity {
 

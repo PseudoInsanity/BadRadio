@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -18,8 +18,8 @@ import android.widget.VideoView;
 import com.example.edmirsuljic.badradio.services.MusicService;
 import com.example.edmirsuljic.badradio.R;
 
-import static com.example.edmirsuljic.badradio.Adapters.RadioAdapter.currPos;
-import static com.example.edmirsuljic.badradio.Fragments.HomeFragment.lastPos;
+import static com.example.edmirsuljic.badradio.adapters.RadioAdapter.currPos;
+import static com.example.edmirsuljic.badradio.fragments.HomeFragment.lastPos;
 
 
 public class PlayerFragment extends Fragment {

@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Fragments;
+package com.example.edmirsuljic.badradio.fragments;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -14,9 +14,9 @@ import android.widget.ImageButton;
 import android.widget.VideoView;
 
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.Adapters.RadioAdapter;
-import com.example.edmirsuljic.badradio.Radio_Related.RadioStation;
-import com.example.edmirsuljic.badradio.Activities.StartActivity;
+import com.example.edmirsuljic.badradio.adapters.RadioAdapter;
+import com.example.edmirsuljic.badradio.radio_related.RadioStation;
+import com.example.edmirsuljic.badradio.activities.StartActivity;
 import com.example.edmirsuljic.badradio.services.MusicService;
 
 import java.util.ArrayList;

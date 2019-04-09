@@ -1,4 +1,4 @@
-package com.example.edmirsuljic.badradio.Activities;
+package com.example.edmirsuljic.badradio.activities;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.widget.VideoView;
 
 import com.example.edmirsuljic.badradio.R;
-import com.example.edmirsuljic.badradio.Radio_Related.RadioHandler;
+import com.example.edmirsuljic.badradio.radio_related.RadioHandler;
 
 /* Activity transitions in this project is inspired by Coding in Flow
     https://www.youtube.com/watch?v=0s6x3Sn4eYo

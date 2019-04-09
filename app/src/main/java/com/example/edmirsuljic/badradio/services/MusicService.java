@@ -9,7 +9,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import static com.example.edmirsuljic.badradio.Fragments.PlayerFragment.playing;
+import static com.example.edmirsuljic.badradio.fragments.PlayerFragment.playing;
 
 public class MusicService extends Service {
 
